@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Surveys</h1>
+<h1>Encuestas</h1>
 
-<table class = "table">
-  <thead class = "thead-dark">
+<table class="table">
+  <thead class="thead-dark">
     <tr>
-      <th>Name</th>
-      <th>Kind</th>
-      <th>Description</th>
+      <th>Nombre</th>
+      <th>Tipo</th>
+      <th>Descripción</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,20 +18,16 @@
         <td><%= survey.name %></td>
         <td><%= survey.kind %></td>
         <td><%= survey.description %></td>
+
         <td><%= link_to survey do %>
-            <span ><i class="far fa-eye" style="color: #222222"></i> </span>
-            Show
-            <% end %>
+           <i class="fas fa-eye fa-3x" style="color:green"></i>
+          <% end %>
         </td>
-        <td><%= link_to edit_survey_path(survey) do %>
-            <i class="far fa-edit" style="color: #222222"></i> </span>
-            Edit
-            <% end %>
-        </td>
-        <td><%= link_to survey, method: :delete, data: { confirm: 'Are you sure?' } do %>
-            <i class="far fa-trash-alt" style="color: #222222"></i> </span>
-            Delete
-            <% end %>
+
+        <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
+        <td><%= link_to  survey, method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <i class="fas fa-trash fa-3x"></i>
+          <% end %>
         </td>
       </tr>
     <% end %>
@@ -40,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Survey', new_survey_path %>
+<%= link_to 'Nueva encuesta', new_survey_path %>

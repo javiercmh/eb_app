@@ -1,49 +1,48 @@
 require 'test_helper'
 
-class SurveysControllerTest < ActionController::TestCase
+class SurveysControllerTest < ActionDispatch::IntegrationTest
   setup do
     @survey = surveys(:one)
   end
 
   test "should get index" do
-    get :index
+    get surveys_url
     assert_response :success
-    assert_not_nil assigns(:surveys)
   end
 
   test "should get new" do
-    get :new
+    get new_survey_url
     assert_response :success
   end
 
   test "should create survey" do
     assert_difference('Survey.count') do
-      post :create, survey: { description: @survey.description, kind: @survey.kind, name: @survey.name }
+      post surveys_url, params: { survey: { description: @survey.description, kind: @survey.kind, name: @survey.name } }
     end
 
-    assert_redirected_to survey_path(assigns(:survey))
+    assert_redirected_to survey_url(Survey.last)
   end
 
   test "should show survey" do
-    get :show, id: @survey
+    get survey_url(@survey)
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @survey
+    get edit_survey_url(@survey)
     assert_response :success
   end
 
   test "should update survey" do
-    patch :update, id: @survey, survey: { description: @survey.description, kind: @survey.kind, name: @survey.name }
-    assert_redirected_to survey_path(assigns(:survey))
+    patch survey_url(@survey), params: { survey: { description: @survey.description, kind: @survey.kind, name: @survey.name } }
+    assert_redirected_to survey_url(@survey)
   end
 
   test "should destroy survey" do
     assert_difference('Survey.count', -1) do
-      delete :destroy, id: @survey
+      delete survey_url(@survey)
     end
 
-    assert_redirected_to surveys_path
+    assert_redirected_to surveys_url
   end
 end

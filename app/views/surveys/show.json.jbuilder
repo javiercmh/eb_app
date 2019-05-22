@@ -1,1 +1,1 @@
-json.extract! @survey, :id, :name, :kind, :description, :created_at, :updated_at
+json.partial! "surveys/survey", survey: @survey
